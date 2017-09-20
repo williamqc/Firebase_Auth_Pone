@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Firebase_Auth_Phone</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <string name="number">+51927540186</string>
+
+    <string name="info">Verificacion automatica del sms entrante </string>
+    <string name="info1"> Cod.Pais+Numero = +51.927540186 </string>
+    <string name="code">inserta el codigo del SMS</string>
+    <string name="buton_1">Enviar</string>
+    <string name="buton_2">Validar</string>
+    <string name="now_logged_in">verificacion de codigo automatico satisfactorio</string>
+    <string name="signed_success">inicio de sesion exitoso!!!</string>
+    <string name="sign_credential_fail">inicio de sesion fallido</string>
+
+</resources>
