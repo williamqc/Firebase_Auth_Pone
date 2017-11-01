@@ -2,8 +2,7 @@
   "project_info": {
     "project_number": "1091321112888",
     "firebase_url": "https://fir-authphone-a12ca.firebaseio.com",
-    "project_id": "fir-authphone-a12ca",
-    "storage_bucket": "fir-authphone-a12ca.appspot.com"
+    "project_id": "fir-authphone-a12ca"
   },
   "client": [
     {
@@ -14,6 +13,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "1091321112888-qei1bvn7kkvgnqtan3ilh8i7268sr7ds.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.william.firebase_auth_phone",
+            "certificate_hash": "37fff6e3d75b2a25b4d6496a342f563ccdaeb142"
+          }
+        },
         {
           "client_id": "1091321112888-2r5728tqimsp5aeh358vjhqq01dkr70o.apps.googleusercontent.com",
           "client_type": 1,

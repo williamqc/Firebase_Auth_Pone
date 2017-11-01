@@ -2,7 +2,8 @@
     <string name="app_name">Firebase_Auth_Phone</string>
     <string name="title_activity_main2">Main2Activity</string>
 
-    <string name="number">+51927540186</string>
+    <string name="number">Movil</string>
+    <string name="name">Nnombre</string>
 
     <string name="info">Verificacion automatica del sms entrante </string>
     <string name="info1"> Cod.Pais+Numero = +51.927540186 </string>

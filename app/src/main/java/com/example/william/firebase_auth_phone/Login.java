@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,9 +19,9 @@ import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
 
- public class MainActivity extends AppCompatActivity {
+ public class Login extends AppCompatActivity {
 
-     private TextView number,code;
+     private TextView number,name;
      private FirebaseAuth mAuth;
      private FirebaseAuth.AuthStateListener mAuthListener;
      private String mVerificationId;
@@ -39,18 +38,20 @@ import java.util.concurrent.TimeUnit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.login_main);
 
         number = (TextView) findViewById(R.id.id_Phone);
-        code = (TextView) findViewById(R.id.idCodigo);
+        name = (TextView) findViewById((R.id.idNnombre));
+
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if (firebaseAuth.getCurrentUser() != null ) {
 
-                    Toast.makeText(MainActivity.this, getString(R.string.now_logged_in) + firebaseAuth.getCurrentUser().getProviderId(), Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(MainActivity.this, Main2Activity.class);
+                    Toast.makeText(Login.this, getString(R.string.now_logged_in) + firebaseAuth.getCurrentUser().getProviderId(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Login.this, Contactos.class);
+                    intent.putExtra("nombre", name.getText().toString());
                     startActivity(intent);
                     finish();
                 }
@@ -62,11 +63,13 @@ import java.util.concurrent.TimeUnit;
     }
 
      public void requestCode(View view) {
-         String phoneNumber = number.getText().toString();
+         String numero = number.getText().toString();
+         String codigo = "+51";
+         String phoneNumber = codigo+numero;
          if (TextUtils.isEmpty(phoneNumber))
              return;
          PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                 phoneNumber, 60, TimeUnit.SECONDS, MainActivity.this, new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+                 phoneNumber, 60, TimeUnit.SECONDS, Login.this, new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                      @Override
                      public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
                          //Called if it is not needed to enter verification code
@@ -76,7 +79,7 @@ import java.util.concurrent.TimeUnit;
                      @Override
                      public void onVerificationFailed(FirebaseException e) {
                          //incorrect phone number, verification code, emulator, etc.
-                         Toast.makeText(MainActivity.this, "onVerificationFailed " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                         Toast.makeText(Login.this, "onVerificationFailed " + e.getMessage(), Toast.LENGTH_SHORT).show();
                      }
 
                      @Override
@@ -91,7 +94,7 @@ import java.util.concurrent.TimeUnit;
                      public void onCodeAutoRetrievalTimeOut(String verificationId) {
                          //called after timeout if onVerificationCompleted has not been called
                          super.onCodeAutoRetrievalTimeOut(verificationId);
-                         Toast.makeText(MainActivity.this, "onCodeAutoRetrievalTimeOut :" + verificationId, Toast.LENGTH_SHORT).show();
+                         Toast.makeText(Login.this, "onCodeAutoRetrievalTimeOut :" + verificationId, Toast.LENGTH_SHORT).show();
                      }
                  }
          );
@@ -103,20 +106,14 @@ import java.util.concurrent.TimeUnit;
                      @Override
                      public void onComplete(@NonNull Task<AuthResult> task) {
                          if (task.isSuccessful()) {
-                             Toast.makeText(MainActivity.this, R.string.signed_success, Toast.LENGTH_SHORT).show();
+                             Toast.makeText(Login.this, R.string.signed_success, Toast.LENGTH_SHORT).show();
                          } else {
-                             Toast.makeText(MainActivity.this, getString(R.string.sign_credential_fail) + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                             Toast.makeText(Login.this, getString(R.string.sign_credential_fail) + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                          }
                      }
                  });
      }
 
-     public void signIn(View view) {
-         String cod = code.getText().toString();
-         if (TextUtils.isEmpty(cod))
-         signInWithCredential(PhoneAuthProvider.getCredential(mVerificationId, cod));
-         return;
-     }
      }
 
 

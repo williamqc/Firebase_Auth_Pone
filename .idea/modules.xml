@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Firebase_Auth_Phone.iml" filepath="$PROJECT_DIR$/Firebase_Auth_Phone.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Firebase_Auth_Pone.iml" filepath="$PROJECT_DIR$/Firebase_Auth_Pone.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
